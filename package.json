@@ -1,0 +1,28 @@
+{
+  "name": "is117-final-project",
+  "version": "1.0.0",
+  "description": "IS117 Final Project: Professional Web Portfolio System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint:html": "htmlhint \"docs/**/*.html\"",
+    "lint:css": "stylelint \"docs/**/*.css\"",
+    "lint": "npm run lint:html && npm run lint:css",
+    "prepare": "husky install"
+  },
+  "keywords": ["portfolio", "web-development", "is117"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@lhci/cli": "^0.12.0",
+    "htmlhint": "^1.1.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard": "^34.0.0"
+  },
+  "lint-staged": {
+    "*.html": "htmlhint",
+    "*.css": "stylelint"
+  }
+}

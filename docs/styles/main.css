@@ -1,0 +1,209 @@
+/* CSS Variables for Theming */
+:root {
+    /* Base font size: 16px at 320px → 20px at 1400px */
+    font-size: clamp(1rem, 0.92rem + 0.39vw, 1.25rem);
+    
+    /* Color Palette */
+    --color-primary: #2563eb;
+    --color-primary-dark: #1e40af;
+    --color-secondary: #7c3aed;
+    --color-accent: #f59e0b;
+    --color-bg: #ffffff;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-border: #e5e7eb;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 6rem;
+    
+    /* Border Radius */
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+/* Reset & Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Typography */
+h1 {
+    /* Massive scale: 48px → 128px */
+    font-size: clamp(3rem, 2.07rem + 4.63vw, 8rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+}
+
+h2 {
+    font-size: clamp(1.5rem, 1.29rem + 1.04vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+}
+
+p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-sm);
+    width: 100%;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    color: white;
+    padding: var(--spacing-xl) var(--spacing-sm);
+    text-align: center;
+    animation: fadeIn 1s ease-in;
+}
+
+.tagline {
+    font-size: clamp(1.125rem, 1.05rem + 0.37vw, 1.5rem);
+    opacity: 0.9;
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-sm);
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Portfolio Card */
+.portfolio-card {
+    background: white;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    box-shadow: var(--shadow-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-content h2 {
+    color: var(--color-primary);
+}
+
+.card-content p {
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+/* CTA Button */
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cta-button:hover,
+.cta-button:focus {
+    background-color: var(--color-primary-dark);
+    transform: scale(1.05);
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* Footer */
+.site-footer {
+    background-color: var(--color-text);
+    color: white;
+    padding: var(--spacing-md) var(--spacing-sm);
+    text-align: center;
+    margin-top: auto;
+}
+
+.site-footer nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.site-footer a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablet: 768px - 1024px */
+@media (min-width: 768px) {
+    .container {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

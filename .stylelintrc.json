@@ -1,0 +1,14 @@
+{
+  "extends": "stylelint-config-standard",
+  "rules": {
+    "color-hex-length": "long",
+    "selector-class-pattern": null,
+    "custom-property-pattern": null,
+    "color-function-notation": null,
+    "alpha-value-notation": null,
+    "font-family-name-quotes": null,
+    "keyframes-name-pattern": null,
+    "media-feature-range-notation": null,
+    "no-descending-specificity": null
+  }
+}
