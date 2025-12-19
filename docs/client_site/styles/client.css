@@ -1,26 +1,28 @@
 /* Client Site - NexusAI Tech Startup Styles */
 
 :root {
-    --primary-blue: #4a90e2;
-    --accent-purple: #8b7fc7;
-    --soft-cyan: #5fb3d4;
-    --dark-bg: #0f1419;
-    --card-bg: #1a1f2e;
-    --border-subtle: rgba(74, 144, 226, 0.2);
-    --text-muted: #a8b2c1;
+    --primary-blue: #2563eb;
+    --accent-purple: #7c3aed;
+    --soft-cyan: #0ea5e9;
+    --light-bg: #ffffff;
+    --off-white: #f8fafc;
+    --card-bg: #ffffff;
+    --border-subtle: rgba(37, 99, 235, 0.15);
+    --text-dark: #0f172a;
+    --text-muted: #64748b;
 }
 
 /* General Section Headings */
 h2 {
-    color: #e4e7eb;
+    color: #0f172a;
     text-align: center;
 }
 
 /* Header */
 .site-header {
-    background: rgba(15, 20, 25, 0.95);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-    box-shadow: 0 1px 0 rgba(74, 144, 226, 0.1);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
     padding: 1rem 0;
     position: sticky;
     top: 0;
@@ -53,7 +55,7 @@ h2 {
 }
 
 .nav-menu a {
-    color: #e4e7eb;
+    color: #334155;
     text-decoration: none;
     font-weight: 500;
     transition: all 0.3s ease;
@@ -67,7 +69,7 @@ h2 {
     left: 0;
     width: 0;
     height: 2px;
-    background: #4a90e2;
+    background: #2563eb;
     transition: width 0.3s ease;
 }
 
@@ -78,7 +80,7 @@ h2 {
 
 .nav-menu a:hover,
 .nav-menu a:focus {
-    color: #4a90e2;
+    color: #2563eb;
 }
 
 .nav-cta {
@@ -161,8 +163,8 @@ h2 {
 
 /* Hero Section */
 .hero-client {
-    background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 100%);
-    color: white;
+    background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 50%, #faf5ff 100%);
+    color: #0f172a;
     padding: 8rem 2rem;
     text-align: center;
     position: relative;
@@ -174,8 +176,8 @@ h2 {
     position: absolute;
     inset: 0;
     background: 
-        radial-gradient(circle at 30% 40%, rgba(74, 144, 226, 0.08) 0%, transparent 60%),
-        radial-gradient(circle at 70% 60%, rgba(139, 127, 199, 0.06) 0%, transparent 60%);
+        radial-gradient(circle at 30% 40%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 70% 60%, rgba(124, 58, 237, 0.06) 0%, transparent 60%);
     animation: heroGlow 12s ease-in-out infinite;
 }
 
@@ -312,27 +314,27 @@ h2 {
 .trust-badges span {
     font-size: 1rem;
     font-weight: 500;
-    background: rgba(74, 144, 226, 0.1);
+    background: white;
     padding: 0.75rem 1.5rem;
     border-radius: 50px;
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(74, 144, 226, 0.3);
+    border: 1px solid rgba(37, 99, 235, 0.2);
     transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(74, 144, 226, 0.2);
-    color: #e4e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    color: #334155;
 }
 
 .trust-badges span:hover {
-    background: rgba(74, 144, 226, 0.15);
+    background: #f8fafc;
     transform: translateY(-2px);
-    border-color: rgba(74, 144, 226, 0.5);
-    box-shadow: 0 4px 20px rgba(74, 144, 226, 0.3);
+    border-color: rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
 /* Problem/Solution Section */
 .section-problem {
     padding: 4rem 2rem;
-    background: linear-gradient(180deg, #1a1f2e 0%, #0f1419 100%);
+    background: #f8fafc;
 }
 
 .problem-layout {
@@ -347,15 +349,15 @@ h2 {
 .solution-side h2 {
     font-size: clamp(1.75rem, 3vw, 2.5rem);
     margin-bottom: 1.5rem;
-    color: #e4e7eb;
+    color: #0f172a;
 }
 
 .problem-side h2 {
-    color: #ef4444;
+    color: #dc2626;
 }
 
 .solution-side h2 {
-    background: linear-gradient(135deg, #4a90e2 0%, #8b7fc7 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     background-clip: text;
     /* stylelint-disable-next-line property-no-vendor-prefix */
     -webkit-background-clip: text;
@@ -372,6 +374,7 @@ h2 {
     padding-left: 2rem;
     position: relative;
     font-size: 1.125rem;
+    color: #475569;
 }
 
 .problem-list li::before {
@@ -386,7 +389,7 @@ h2 {
     font-size: 1.125rem;
     line-height: 1.8;
     margin-bottom: 2rem;
-    color: #d0d5dd;
+    color: #475569;
 }
 
 .btn-secondary {
@@ -429,13 +432,13 @@ h2 {
 /* Services Section */
 .section-services {
     padding: 6rem 2rem;
-    background: #0f1419;
+    background: white;
 }
 
 .section-subtitle {
     text-align: center;
     font-size: 1.125rem;
-    color: #a8b2c1;
+    color: #64748b;
     margin-bottom: 3rem;
 }
 
@@ -448,26 +451,26 @@ h2 {
 }
 
 .service-card {
-    background: linear-gradient(135deg, #1a1f2e 0%, #1a1f2e 100%);
+    background: white;
     padding: 2rem;
     border-radius: 1rem;
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
     text-align: center;
     position: relative;
     transition: all 0.3s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(74, 144, 226, 0.4);
-    box-shadow: 0 8px 30px rgba(74, 144, 226, 0.2);
+    transform: translateY(-8px);
+    border-color: rgba(37, 99, 235, 0.2);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .service-card.featured {
-    border: 2px solid rgba(74, 144, 226, 0.5);
-    background: linear-gradient(135deg, #1a1f2e 0%, #232938 100%);
-    box-shadow: 0 4px 25px rgba(74, 144, 226, 0.3), 0 0 50px rgba(74, 144, 226, 0.1);
+    border: 2px solid rgba(37, 99, 235, 0.3);
+    background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.15);
 }
 
 .badge {
@@ -475,12 +478,13 @@ h2 {
     top: -15px;
     left: 50%;
     transform: translateX(-50%);
-    background: linear-gradient(135deg, #4a90e2 0%, #8b7fc7 100%);
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     color: white;
     padding: 0.5rem 1.5rem;
     border-radius: 2rem;
     font-size: 0.875rem;
     font-weight: 600;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .service-icon {
@@ -490,8 +494,12 @@ h2 {
 
 .service-card h3 {
     font-size: 1.5rem;
-    color: #4a90e2;
+    color: #1e40af;
     margin-bottom: 1rem;
+}
+
+.service-card p {
+    color: #475569;
 }
 
 .service-features {
@@ -505,27 +513,28 @@ h2 {
     padding: 0.5rem 0;
     padding-left: 1.5rem;
     position: relative;
+    color: #475569;
 }
 
 .service-features li::before {
     content: '✓';
     position: absolute;
     left: 0;
-    color: #4a90e2;
+    color: #2563eb;
     font-weight: 700;
 }
 
 .service-price {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #5fb3d4;
+    color: #0ea5e9;
     margin-top: 1.5rem;
 }
 
 /* Portfolio Section */
 .section-portfolio {
     padding: 6rem 2rem;
-    background: linear-gradient(180deg, #0f1419 0%, #1a1f2e 100%);
+    background: #f8fafc;
 }
 
 .portfolio-grid {
@@ -537,18 +546,18 @@ h2 {
 }
 
 .portfolio-item {
-    background: #1a1f2e;
+    background: white;
     border-radius: 1rem;
     overflow: hidden;
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 }
 
 .portfolio-item:hover {
-    transform: translateY(-5px);
-    border-color: rgba(74, 144, 226, 0.4);
-    box-shadow: 0 8px 30px rgba(74, 144, 226, 0.2);
+    transform: translateY(-8px);
+    border-color: rgba(37, 99, 235, 0.2);
+    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.12), 0 4px 8px rgba(0, 0, 0, 0.08);
 }
 
 .portfolio-image {
@@ -562,25 +571,25 @@ h2 {
 
 .portfolio-info h3 {
     font-size: 1.25rem;
-    color: #4a90e2;
+    color: #1e40af;
     margin-bottom: 0.5rem;
 }
 
 .portfolio-info p {
-    color: #a8b2c1;
+    color: #475569;
 }
 
 .portfolio-location {
     display: block;
     margin-top: 1rem;
     font-size: 0.875rem;
-    color: #707a8a;
+    color: #64748b;
 }
 
 /* Testimonials */
 .section-testimonials {
     padding: 6rem 2rem;
-    background: #0f1419;
+    background: white;
 }
 
 .testimonials-grid {
@@ -592,17 +601,18 @@ h2 {
 }
 
 .testimonial-card {
-    background: #1a1f2e;
+    background: white;
     padding: 2rem;
     border-radius: 1rem;
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
 }
 
 .testimonial-card:hover {
-    border-color: rgba(74, 144, 226, 0.3);
-    box-shadow: 0 6px 25px rgba(74, 144, 226, 0.2);
+    border-color: rgba(37, 99, 235, 0.15);
+    box-shadow: 0 8px 16px rgba(37, 99, 235, 0.1), 0 2px 4px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
 }
 
 .stars {
@@ -616,7 +626,7 @@ h2 {
     line-height: 1.7;
     font-style: italic;
     margin-bottom: 1.5rem;
-    color: #d0d5dd;
+    color: #475569;
 }
 
 .testimonial-author {
@@ -625,20 +635,20 @@ h2 {
 }
 
 .testimonial-author strong {
-    color: #4a90e2;
+    color: #1e40af;
     font-size: 1rem;
 }
 
 .testimonial-author span {
     font-size: 0.875rem;
-    color: #9ca3af;
+    color: #64748b;
 }
 
 /* Offer Section */
 .section-offer {
     padding: 6rem 2rem;
-    background: linear-gradient(135deg, #1a1f2e 0%, #232938 100%);
-    color: white;
+    background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%);
+    color: #0f172a;
     position: relative;
     overflow: hidden;
 }
@@ -647,7 +657,7 @@ h2 {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(74, 144, 226, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at 50% 50%, rgba(37, 99, 235, 0.05) 0%, transparent 70%);
 }
 
 .offer-box {
@@ -664,8 +674,12 @@ h2 {
 .offer-value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #fbbf24;
+    color: #0ea5e9;
     margin-bottom: 1.5rem;
+}
+
+.offer-box p {
+    color: #475569;
 }
 
 .offer-includes {
@@ -685,23 +699,23 @@ h2 {
     font-size: 1.125rem;
     font-weight: 600;
     margin: 2rem 0;
-    color: #fbbf24;
+    color: #ea580c;
 }
 
 /* Contact Form */
 .section-contact {
     padding: 6rem 2rem;
-    background: linear-gradient(180deg, #232938 0%, #0f1419 100%);
+    background: #f8fafc;
 }
 
 .contact-form-client {
     max-width: 800px;
     margin: 3rem auto 0;
-    background: #1a1f2e;
+    background: white;
     padding: 3rem;
     border-radius: 1rem;
-    border: 1px solid rgba(74, 144, 226, 0.2);
-    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .form-row {
@@ -718,7 +732,7 @@ h2 {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
-    color: #e4e7eb;
+    color: #334155;
 }
 
 .form-group input,
@@ -726,12 +740,12 @@ h2 {
 .form-group textarea {
     width: 100%;
     padding: 0.75rem;
-    background: #0f1419;
-    border: 1px solid rgba(74, 144, 226, 0.3);
+    background: white;
+    border: 1px solid #cbd5e1;
     border-radius: 0.5rem;
     font-family: inherit;
     font-size: 1rem;
-    color: #e4e7eb;
+    color: #0f172a;
     transition: all 0.3s ease;
 }
 
@@ -739,8 +753,8 @@ h2 {
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 .form-status {
