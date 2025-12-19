@@ -58,30 +58,37 @@
     top: 1rem;
     background: white;
     border: 2px solid var(--color-primary);
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     padding: 0.6rem;
     z-index: 9999;
-    width: 48px;
-    height: 48px;
-    box-shadow: 0 4px 16px rgba(98, 0, 238, 0.3);
+    width: 52px;
+    height: 52px;
+    box-shadow: 0 6px 20px rgba(98, 0, 238, 0.25);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
   }
   .menu-toggle:hover {
     background: var(--color-primary);
-    transform: scale(1.05);
+    transform: scale(1.08);
+    box-shadow: 0 8px 24px rgba(98, 0, 238, 0.35);
+  }
+  .menu-toggle:active {
+    transform: scale(0.95);
   }
   .menu-toggle:hover span {
     background: white;
   }
   .menu-toggle span {
     display: block;
-    width: 24px;
+    width: 26px;
     height: 3px;
     background: var(--color-primary);
-    margin: 4px 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-radius: 2px;
+    border-radius: 3px;
   }
   .menu-toggle.active {
     background: var(--color-primary);
@@ -90,14 +97,14 @@
     background: white;
   }
   .menu-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(7px, 7px);
+    transform: rotate(45deg) translate(8px, 8px);
   }
   .menu-toggle.active span:nth-child(2) {
     opacity: 0;
     transform: translateX(-20px);
   }
   .menu-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
+    transform: rotate(-45deg) translate(8px, -8px);
   }
 
   .color-swatch { border-radius: 12px; padding: 1.5rem 1rem; text-align: center; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.3s; }
@@ -140,51 +147,57 @@
     .sticky-nav nav {
       display: flex;
       position: fixed;
-      top: 60px;
+      top: 70px;
       left: 0;
       right: 0;
       background: white;
       flex-direction: column;
       padding: 0;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       visibility: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border-top: 2px solid var(--color-primary);
+      border-top: 3px solid var(--color-primary);
     }
     .sticky-nav nav.active {
-      max-height: 600px;
+      max-height: 80vh;
       opacity: 1;
       visibility: visible;
       overflow-y: auto;
+      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
     .sticky-nav a {
       width: 100%;
-      padding: 1.2rem 1.5rem;
+      padding: 1.3rem 1.5rem;
       border-bottom: 1px solid rgba(0,0,0,0.06);
       border-left: 4px solid transparent;
-      border-right: 4px solid transparent;
       text-align: left;
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      font-size: 1rem;
+      font-size: 1.05rem;
+      min-height: 56px; /* Better touch target */
+      transition: all 0.3s ease;
     }
-    .sticky-nav a:hover {
-      background: rgba(98, 0, 238, 0.05);
-      border-left-color: var(--color-primary);
-    }
-    .sticky-nav a.active {
+    .sticky-nav a:hover,
+    .sticky-nav a:active {
       background: rgba(98, 0, 238, 0.08);
       border-left-color: var(--color-primary);
-      border-right-color: var(--color-primary);
-      font-weight: 600;
+      padding-left: 2rem;
+    }
+    .sticky-nav a.active {
+      background: rgba(98, 0, 238, 0.12);
+      border-left-color: var(--color-primary);
+      font-weight: 700;
     }
     .sticky-nav a:first-child {
       border-top: none;
     }
+    .sticky-nav a:last-child {
+      border-bottom: none;
+    }"}, {"explanation": "Improve client site mobile responsiveness", "oldString": "/* Responsive Design */\n@media (max-width: 768px) {\n    .features-grid {\n        grid-template-columns: 1fr;\n    }\n    \n    .gallery-grid {\n        grid-template-columns: 1fr;\n    }\n}", "filePath": "/home/anabhayan/IS117_Final/docs/client_site/styles/client.css", "newString": "/* Responsive Design - Mobile First */\n@media (max-width: 767px) {\n    /* Hero improvements */\n    .hero-client {\n        padding: 4rem 1.5rem 3rem;\n        min-height: 70vh;\n    }\n\n    .hero-client h1 {\n        font-size: clamp(2rem, 8vw, 3rem);\n        line-height: 1.2;\n    }\n\n    .hero-tagline {\n        font-size: 1.1rem;\n        line-height: 1.6;\n    }\n\n    /* Better touch targets */\n    .cta-primary,\n    .cta-secondary {\n        padding: 1rem 2rem;\n        font-size: 1rem;\n        min-height: 48px;\n        width: 100%;\n        text-align: center;\n    }\n\n    .hero-cta-client {\n        flex-direction: column;\n        gap: 1rem;\n        width: 100%;\n    }\n\n    /* Grid layouts */\n    .features-grid {\n        grid-template-columns: 1fr;\n        gap: 1.5rem;\n    }\n    \n    .gallery-grid {\n        grid-template-columns: 1fr;\n        gap: 1.5rem;\n    }\n\n    /* Better spacing */\n    section {\n        padding: 3rem 1.5rem;\n    }\n\n    .feature-card,\n    .gallery-item {\n        padding: 1.5rem;\n    }\n\n    /* Form improvements */\n    .form-group input,\n    .form-group textarea,\n    .form-group select {\n        padding: 1rem;\n        font-size: 16px; /* Prevents zoom on iOS */\n    }\n\n    /* Navigation */\n    .site-header {\n        padding: 1rem 0;\n    }\n\n    .nav-menu {\n        gap: 1rem;\n        font-size: 0.95rem;\n    }\n}\n\n@media (min-width: 768px) and (max-width: 1023px) {\n    .features-grid {\n        grid-template-columns: repeat(2, 1fr);\n    }\n    \n    .gallery-grid {\n        grid-template-columns: repeat(2, 1fr);\n    }\n}"}, {"explanation": "Add better mobile UX styles to design style page", "oldString": "    .grid-viz { grid-template-columns: repeat(4, 1fr); }\n    .component-grid { grid-template-columns: 1fr; }\n    .hero h1 { font-size: 2.2rem; }\n    .section-title { font-size: 2rem; }\n  }", "filePath": "/home/anabhayan/IS117_Final/docs/design_style/index.html", "newString": "    /* Better mobile layouts */\n    .grid-viz { \n      grid-template-columns: repeat(2, 1fr); \n      gap: 1rem;\n    }\n    .component-grid { \n      grid-template-columns: 1fr;\n      gap: 1.5rem;\n    }\n    .hero {\n      padding: 4rem 1.5rem 3rem;\n      min-height: 60vh;\n    }\n    .hero h1 { \n      font-size: clamp(2rem, 7vw, 2.5rem);\n      line-height: 1.2;\n    }\n    .section-title { \n      font-size: 1.75rem;\n      line-height: 1.3;\n    }\n    section {\n      padding: 3rem 1.5rem;\n    }\n    /* Better touch targets */\n    .motion-box,\n    .component-card,\n    .color-swatch {\n      min-height: 48px;\n      padding: 1.5rem;\n    }\n    /* Improve readability */\n    .text-body,\n    .component-card p {\n      font-size: 1rem;\n      line-height: 1.6;\n    }\n  }"}]
     .grid-viz { grid-template-columns: repeat(4, 1fr); }
     .component-grid { grid-template-columns: 1fr; }
     .hero h1 { font-size: 2.2rem; }

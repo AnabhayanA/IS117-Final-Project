@@ -207,3 +207,62 @@ p {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
+/* Mobile Improvements */
+@media (max-width: 767px) {
+    .hero {
+        padding: 3rem 1.5rem;
+        min-height: 60vh;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1.2;
+    }
+
+    .tagline {
+        font-size: 1.1rem;
+        line-height: 1.6;
+    }
+
+    .portfolio-grid {
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .card-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .card-content h2 {
+        font-size: 1.75rem;
+    }
+
+    .card-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Better touch targets for mobile */
+    .cta-button {
+        padding: 1rem 2rem;
+        font-size: 1rem;
+        min-height: 48px;
+        width: 100%;
+        text-align: center;
+        display: block;
+    }
+
+    footer {
+        padding: 2rem 1.5rem;
+    }
+
+    .social-links {
+        gap: 1.5rem;
+    }
+
+    .social-links a {
+        font-size: 2rem;
+        padding: 0.75rem;
+    }
+}
