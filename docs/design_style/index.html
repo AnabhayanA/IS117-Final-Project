@@ -50,10 +50,15 @@
     border-bottom: 1px solid rgba(0,0,0,0.08);
     z-index: 999;
     box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  }
+  .sticky-nav .container {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.5rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
   }
   .sticky-nav nav {
     display: flex;
@@ -61,8 +66,6 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    max-width: 1400px;
-    margin: 0 auto;
   }
   .sticky-nav a {
     padding: 1rem 1.5rem;
@@ -79,39 +82,22 @@
     border-bottom-color: var(--color-primary);
   }
   
-  /* Hamburger Menu - Always visible on mobile/tablet */
+  /* Hamburger Menu */
   .menu-toggle {
     display: none;
-    position: fixed;
-    right: 1rem;
-    top: 1rem;
-    background: white;
-    border: 2px solid var(--color-primary);
-    border-radius: 12px;
-    cursor: pointer;
-    padding: 0.6rem;
-    z-index: 10001;
-    width: 48px;
-    height: 48px;
-    box-shadow: 0 6px 20px rgba(98, 0, 238, 0.25);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     gap: 5px;
-  }
-
-  /* Show hamburger and hide regular nav on smaller screens */
-  @media (max-width: 1200px) {
-    .menu-toggle {
-      display: flex !important;
-    }
-    .sticky-nav {
-      display: none;
-    }
-    .sticky-nav nav {
-      display: none;
-    }
+    background: white;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0.6rem;
+    width: 48px;
+    height: 48px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1001;
   }
   .menu-toggle:hover {
     background: var(--color-primary);
@@ -170,35 +156,32 @@
 
   section[id] { scroll-margin-top: 80px; }
 
-  @media (max-width: 1200px) {
-    .sticky-nav { 
-      display: none;
-    }
-    .sticky-nav nav {
+  @media (max-width: 767px) {
+    .menu-toggle {
       display: flex;
+    }
+    
+    .sticky-nav nav {
       position: fixed;
-      top: 0;
+      top: 70px;
       left: 0;
       right: 0;
       background: white;
       flex-direction: column;
       padding: 0;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
       max-height: 0;
       overflow: hidden;
       opacity: 0;
       visibility: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border-top: 3px solid var(--color-primary);
-      padding-top: 60px;
     }
+    
     .sticky-nav nav.active {
-      display: flex;
       max-height: 100vh;
       opacity: 1;
       visibility: visible;
       overflow-y: auto;
-      -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
     }
     .sticky-nav a {
       width: 100%;
@@ -271,27 +254,27 @@
 </head>
 <body>
 
-<!-- Hamburger Menu Button (Mobile Only) -->
-<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
-  <span></span>
-  <span></span>
-  <span></span>
-</button>
-
 <!-- Sticky Navigation Bar -->
 <div class="sticky-nav">
-  <nav id="mainNav">
-    <a href="../" class="nav-link" onclick="closeMenu()">← Hub</a>
-    <a href="#hero" class="nav-link" onclick="closeMenu()">🏠 Home</a>
-    <a href="#overview" class="nav-link" onclick="closeMenu()">📚 Overview</a>
-    <a href="#color-system" class="nav-link" onclick="closeMenu()">🎨 Colors</a>
-    <a href="#typography" class="nav-link" onclick="closeMenu()">📝 Typography</a>
-    <a href="#elevation" class="nav-link" onclick="closeMenu()">🔝 Elevation</a>
-    <a href="#components" class="nav-link" onclick="closeMenu()">🧩 Components</a>
-    <a href="#motion" class="nav-link" onclick="closeMenu()">⚡ Motion</a>
-    <a href="#grid" class="nav-link" onclick="closeMenu()">🔲 Grid</a>
-    <a href="#checklist" class="nav-link" onclick="closeMenu()">✅ Checklist</a>
-  </nav>
+  <div class="container">
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <nav id="mainNav">
+      <a href="../" class="nav-link" onclick="closeMenu()">← Hub</a>
+      <a href="#hero" class="nav-link" onclick="closeMenu()">🏠 Home</a>
+      <a href="#overview" class="nav-link" onclick="closeMenu()">📚 Overview</a>
+      <a href="#color-system" class="nav-link" onclick="closeMenu()">🎨 Colors</a>
+      <a href="#typography" class="nav-link" onclick="closeMenu()">📝 Typography</a>
+      <a href="#elevation" class="nav-link" onclick="closeMenu()">🔝 Elevation</a>
+      <a href="#components" class="nav-link" onclick="closeMenu()">🧩 Components</a>
+      <a href="#motion" class="nav-link" onclick="closeMenu()">⚡ Motion</a>
+      <a href="#grid" class="nav-link" onclick="closeMenu()">🔲 Grid</a>
+      <a href="#checklist" class="nav-link" onclick="closeMenu()">✅ Checklist</a>
+    </nav>
+  </div>
 </div>
 
 <!-- Hero Section -->
