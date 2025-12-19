@@ -84,7 +84,7 @@
 
   /* Hamburger Menu - Always visible on mobile */
   .menu-toggle {
-    display: none;
+    display: flex;
     position: fixed;
     right: 1.5rem;
     top: 1rem;
@@ -102,6 +102,12 @@
     justify-content: center;
     align-items: center;
     gap: 5px;
+  }
+  
+  @media (min-width: 1201px) {
+    .menu-toggle {
+      display: none;
+    }
   }
   .menu-toggle:hover {
     background: var(--color-primary);
@@ -161,13 +167,6 @@
   section[id] { scroll-margin-top: 80px; }
 
   @media (max-width: 1200px) {
-    .menu-toggle { 
-      display: flex !important; 
-      flex-direction: column; 
-      align-items: center; 
-      justify-content: center;
-      position: fixed !important;
-    }
     .sticky-nav { 
       position: sticky;
       height: 60px;
