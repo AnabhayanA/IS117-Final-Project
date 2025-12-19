@@ -75,16 +75,9 @@
     border-bottom-color: var(--color-primary);
   }
   
-  /* Show hamburger on smaller screens */
-  @media (max-width: 1200px) {
-    .sticky-nav nav {
-      display: none;
-    }
-  }
-
-  /* Hamburger Menu - Always visible on mobile */
+  /* Hamburger Menu - Always visible on mobile/tablet */
   .menu-toggle {
-    display: flex;
+    display: none;
     position: fixed;
     right: 1.5rem;
     top: 1rem;
@@ -103,9 +96,13 @@
     align-items: center;
     gap: 5px;
   }
-  
-  @media (min-width: 1201px) {
+
+  /* Show hamburger and hide regular nav on smaller screens */
+  @media (max-width: 1200px) {
     .menu-toggle {
+      display: flex !important;
+    }
+    .sticky-nav nav {
       display: none;
     }
   }
