@@ -227,7 +227,8 @@
 .section-services h2,
 .section-projects h2,
 .section-testimonials h2,
-.section-consultation h2 {
+.section-consultation h2,
+.section-contact h2 {
     position: relative;
     display: inline-block;
     padding-bottom: 0.5rem;
