@@ -1,198 +1,752 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Exploring the Swiss International Typographic Style - A museum-quality presentation of modernist design principles.">
-    <meta name="keywords" content="Swiss design, International Typographic Style, modernist design, graphic design history">
-    <meta name="author" content="Your Name">
-    <title>Swiss International Typographic Style | Design Museum</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../styles/main.css">
-    <link rel="stylesheet" href="styles/design-style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Material Design 3 System</title>
+<meta name="description" content="Comprehensive Material Design 3 showcase with interactive demos, color system, typography, elevation, and motion playground.">
+<link rel="stylesheet" href="styles/design-style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* Sticky Navigation */
+  .sticky-nav {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+    z-index: 999;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+  }
+  .sticky-nav nav {
+    display: flex;
+    gap: 0;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .sticky-nav a {
+    padding: 1rem 1.5rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+  }
+  .sticky-nav a:hover,
+  .sticky-nav a.active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+  
+  /* Show hamburger on smaller screens */
+  @media (max-width: 1200px) {
+    .sticky-nav nav {
+      display: none;
+    }
+  }
+
+  /* Hamburger Menu - Always visible on mobile */
+  .menu-toggle {
+    display: none;
+    position: fixed;
+    right: 1.5rem;
+    top: 1rem;
+    background: white;
+    border: 2px solid var(--color-primary);
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0.6rem;
+    z-index: 9999;
+    width: 48px;
+    height: 48px;
+    box-shadow: 0 4px 16px rgba(98, 0, 238, 0.3);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .menu-toggle:hover {
+    background: var(--color-primary);
+    transform: scale(1.05);
+  }
+  .menu-toggle:hover span {
+    background: white;
+  }
+  .menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: var(--color-primary);
+    margin: 4px 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 2px;
+  }
+  .menu-toggle.active {
+    background: var(--color-primary);
+  }
+  .menu-toggle.active span {
+    background: white;
+  }
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+  }
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+  }
+
+  .color-swatch { border-radius: 12px; padding: 1.5rem 1rem; text-align: center; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.2); transition: transform 0.3s; }
+  .color-swatch:hover { transform: translateY(-4px); }
+  .color-swatch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+  
+  .grid-viz { display: grid; grid-template-columns: repeat(8, 1fr); gap: 0.5rem; padding: 1.5rem; background: var(--surface); border-radius: 12px; margin-bottom: 1.5rem; }
+  .grid-cell { aspect-ratio: 1; background: linear-gradient(135deg, #6200EE, #03DAC6); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: 600; }
+
+  .elevation-showcase { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2rem; margin-bottom: 2rem; padding: 2rem; background: var(--surface); border-radius: 12px; }
+  .elevation-box { height: 120px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--text-secondary); font-weight: 600; font-size: 0.85rem; background: white; }
+
+  .type-scale { margin-bottom: 2rem; }
+  .type-scale-item { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(0,0,0,0.08); }
+  .type-scale-item:last-child { border-bottom: none; }
+  .type-label { color: var(--color-primary); font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; }
+
+  .component-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+  .component-card { background: white; border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-1); text-align: center; }
+  .component-preview { height: 120px; background: linear-gradient(135deg, #F0E6FF, #E6F7FF); border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; font-size: 2.5rem; }
+
+  section[id] { scroll-margin-top: 80px; }
+
+  @media (max-width: 1200px) {
+    .menu-toggle { 
+      display: flex !important; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center;
+      position: fixed !important;
+    }
+    .sticky-nav { 
+      position: sticky;
+      height: 60px;
+      background: white;
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+    }
+    .sticky-nav nav {
+      display: flex;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      right: 0;
+      background: white;
+      flex-direction: column;
+      padding: 0;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-top: 2px solid var(--color-primary);
+    }
+    .sticky-nav nav.active {
+      max-height: 600px;
+      opacity: 1;
+      visibility: visible;
+      overflow-y: auto;
+    }
+    .sticky-nav a {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1rem;
+    }
+    .sticky-nav a:hover {
+      background: rgba(98, 0, 238, 0.05);
+      border-left-color: var(--color-primary);
+    }
+    .sticky-nav a.active {
+      background: rgba(98, 0, 238, 0.08);
+      border-left-color: var(--color-primary);
+      border-right-color: var(--color-primary);
+      font-weight: 600;
+    }
+    .sticky-nav a:first-child {
+      border-top: none;
+    }
+    .grid-viz { grid-template-columns: repeat(4, 1fr); }
+    .component-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.2rem; }
+    .section-title { font-size: 2rem; }
+  }
+</style>
 </head>
 <body>
-    <header class="swiss-header">
-        <div class="grid-container">
-            <nav aria-label="Main Navigation">
-                <a href="../" class="back-link">← Hub</a>
-            </nav>
-            <div class="header-title">
-                <h1>International<br>Typographic<br>Style</h1>
-                <p class="subtitle">Switzerland / 1950s–1960s</p>
-            </div>
+
+<!-- Sticky Navigation Bar -->
+<div class="sticky-nav">
+  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <nav id="mainNav">
+    <a href="../" class="nav-link" onclick="closeMenu()">← Hub</a>
+    <a href="#hero" class="nav-link" onclick="closeMenu()">🏠 Home</a>
+    <a href="#overview" class="nav-link" onclick="closeMenu()">📚 Overview</a>
+    <a href="#color-system" class="nav-link" onclick="closeMenu()">🎨 Colors</a>
+    <a href="#typography" class="nav-link" onclick="closeMenu()">📝 Typography</a>
+    <a href="#elevation" class="nav-link" onclick="closeMenu()">🔝 Elevation</a>
+    <a href="#components" class="nav-link" onclick="closeMenu()">🧩 Components</a>
+    <a href="#motion" class="nav-link" onclick="closeMenu()">⚡ Motion</a>
+    <a href="#grid" class="nav-link" onclick="closeMenu()">🔲 Grid</a>
+    <a href="#checklist" class="nav-link" onclick="closeMenu()">✅ Checklist</a>
+  </nav>
+</div>
+
+<!-- Hero Section -->
+<section id="hero" class="hero elevation-2">
+  <div class="hero-blobs" aria-hidden="true">
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+    <div class="blob b3"></div>
+  </div>
+  <div class="container hero-inner">
+    <div class="hero-copy animate">
+      <h1 style="font-size: 3.5rem; margin-bottom: 1rem;">Material Design 3</h1>
+      <p class="lead" style="font-size: 1.3rem; margin-bottom: 2rem;">A comprehensive design system by Google combining Swiss rationalism with tactile material metaphors. Bold colors, elevation hierarchy, and expressive motion.</p>
+      <div class="actions" style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a class="btn-primary ripple" href="#color-system" style="padding: 0.75rem 2rem; display: inline-block; text-decoration: none;">Explore Design System</a>
+        <a class="btn-outline ripple" href="#checklist" style="padding: 0.75rem 2rem; display: inline-block; text-decoration: none;">Authenticity Checklist</a>
+      </div>
+    </div>
+    <div class="hero-preview animate delay-1">
+      <div class="phone-mockup elevation-6" style="background: linear-gradient(135deg, #FF6B9D, #6200EE, #03DAC6); border-radius: 24px; overflow: hidden; width: 200px; height: 400px;">
+        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; padding: 2rem; text-align: center;">
+          <div style="font-size: 3rem; margin-bottom: 1rem;">🎨</div>
+          <h3 style="margin: 0; font-size: 1.2rem; font-weight: 600;">Material Design 3</h3>
+          <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem; opacity: 0.9;">Colorful • Elevated • Accessible</p>
         </div>
-    </header>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <main>
-        <!-- Introduction Section -->
-        <section class="section-intro">
-            <div class="grid-container">
-                <div class="intro-layout">
-                    <div class="intro-text">
-                        <h2>Origins & Philosophy</h2>
-                        <p>The International Typographic Style, also known as Swiss Style, emerged in Switzerland in the 1950s. It emphasized cleanliness, readability, and objectivity through the use of asymmetric layouts, sans-serif typefaces, and the mathematical grid system.</p>
-                    </div>
-                    <div class="intro-quote">
-                        <blockquote>
-                            <p>"The grid system is an aid, not a guarantee. It permits a number of possible uses and each designer can look for a solution appropriate to his personal style."</p>
-                            <cite>— Josef Müller-Brockmann</cite>
-                        </blockquote>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- Overview Section -->
+<section id="overview" class="section" style="background: #F8F8FF;">
+  <div class="container">
+    <h2 class="section-title animate">📚 What Is Material Design?</h2>
+    
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin-bottom: 3rem;" class="animate delay-1">
+      <article>
+        <h3 style="color: var(--color-primary); margin-bottom: 1rem; font-size: 1.3rem; font-weight: 600;">History & Evolution</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+          Created by Google in 2014, Material Design bridges Swiss Design rationalism with physical material metaphors. It treats digital interfaces as 3D spaces with realistic light, shadow, and motion.
+        </p>
+        <ul style="color: var(--text-secondary); line-height: 2; margin: 0; padding-left: 1.5rem;">
+          <li><strong>2014:</strong> Material Design introduced</li>
+          <li><strong>2018:</strong> Material 2 — elevated surfaces</li>
+          <li><strong>2021:</strong> Material 3 — Material You, dynamic color</li>
+          <li><strong>2024+:</strong> Continued refinement</li>
+        </ul>
+      </article>
 
-        <!-- Core Principles -->
-        <section class="section-principles">
-            <div class="grid-container">
-                <h2>Core Design Principles</h2>
-                <div class="principles-grid">
-                    <article class="principle-card">
-                        <div class="principle-number">01</div>
-                        <h3>Grid-Based Layout</h3>
-                        <p>Mathematical precision through systematic grid structures that create visual harmony and organizational clarity.</p>
-                    </article>
-                    <article class="principle-card">
-                        <div class="principle-number">02</div>
-                        <h3>Sans-Serif Typography</h3>
-                        <p>Clean, neutral typefaces like Helvetica and Univers that prioritize legibility and objective communication.</p>
-                    </article>
-                    <article class="principle-card">
-                        <div class="principle-number">03</div>
-                        <h3>Asymmetric Composition</h3>
-                        <p>Dynamic balance achieved through asymmetrical arrangements rather than traditional centered layouts.</p>
-                    </article>
-                    <article class="principle-card">
-                        <div class="principle-number">04</div>
-                        <h3>Limited Color Palette</h3>
-                        <p>Restrained use of color, often featuring bold primaries against neutral backgrounds for maximum impact.</p>
-                    </article>
-                    <article class="principle-card">
-                        <div class="principle-number">05</div>
-                        <h3>Objective Photography</h3>
-                        <p>Clear, direct photographic imagery that communicates information without artistic manipulation.</p>
-                    </article>
-                    <article class="principle-card">
-                        <div class="principle-number">06</div>
-                        <h3>Whitespace Mastery</h3>
-                        <p>Strategic use of negative space to create visual breathing room and direct viewer attention.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+      <article>
+        <h3 style="color: var(--color-secondary); margin-bottom: 1rem; font-size: 1.3rem; font-weight: 600;">🎯 Core Principles</h3>
+        <ul style="color: var(--text-secondary); line-height: 2; margin: 0; padding-left: 1.5rem;">
+          <li><strong>User-Centric:</strong> Accessibility-first design</li>
+          <li><strong>Unified:</strong> Consistent across platforms</li>
+          <li><strong>Personalization:</strong> Dynamic color theming</li>
+          <li><strong>Motion:</strong> Purposeful animations (200-400ms)</li>
+          <li><strong>Elevation:</strong> Depth through shadow layers</li>
+          <li><strong>Inclusive:</strong> WCAG AA/AAA compliant</li>
+        </ul>
+      </article>
+    </div>
 
-        <!-- Key Figures -->
-        <section class="section-figures">
-            <div class="grid-container">
-                <h2>Pioneering Designers</h2>
-                <div class="figures-layout">
-                    <article class="figure-card">
-                        <h3>Josef Müller-Brockmann</h3>
-                        <p class="years">1914–1996</p>
-                        <p>Pioneer of the grid system and author of "Grid Systems in Graphic Design." His concert posters for the Tonhalle Zürich became iconic examples of the style.</p>
-                    </article>
-                    <article class="figure-card">
-                        <h3>Armin Hofmann</h3>
-                        <p class="years">1920–2020</p>
-                        <p>Educator and designer known for his powerful use of positive-negative space relationships and bold geometric forms.</p>
-                    </article>
-                    <article class="figure-card">
-                        <h3>Max Bill</h3>
-                        <p class="years">1908–1994</p>
-                        <p>Architect, painter, and typographer who bridged Bauhaus principles with Swiss modernism, emphasizing mathematical precision.</p>
-                    </article>
-                    <article class="figure-card">
-                        <h3>Emil Ruder</h3>
-                        <p class="years">1914–1970</p>
-                        <p>Typographic educator whose book "Typographie" became foundational. He championed the mathematical approach to type arrangement.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Typography Showcase -->
-        <section class="section-typography">
-            <div class="grid-container">
-                <h2>Typography In Action</h2>
-                <div class="type-demo">
-                    <div class="type-specimen">
-                        <div class="type-large">Aa</div>
-                        <p class="type-name">Helvetica</p>
-                    </div>
-                    <div class="type-hierarchy">
-                        <h1 class="demo-h1">Massive Headline</h1>
-                        <h2 class="demo-h2">Secondary Headline</h2>
-                        <h3 class="demo-h3">Tertiary Headline</h3>
-                        <p class="demo-body">Body text that demonstrates the clarity and readability of Swiss typography. Every element serves a purpose, with no decoration for decoration's sake.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Color Theory -->
-        <section class="section-color">
-            <div class="grid-container">
-                <h2>Color Philosophy</h2>
-                <div class="color-swatches">
-                    <div class="swatch swatch-black">
-                        <span>Black</span>
-                        <code>#000000</code>
-                    </div>
-                    <div class="swatch swatch-white">
-                        <span>White</span>
-                        <code>#ffffff</code>
-                    </div>
-                    <div class="swatch swatch-red">
-                        <span>Red</span>
-                        <code>#ee0000</code>
-                    </div>
-                    <div class="swatch swatch-blue">
-                        <span>Blue</span>
-                        <code>#0066cc</code>
-                    </div>
-                    <div class="swatch swatch-yellow">
-                        <span>Yellow</span>
-                        <code>#ffcc00</code>
-                    </div>
-                </div>
-                <p class="color-description">The Swiss Style favored a restrained palette of black, white, and occasional bold primaries to create strong visual hierarchies without overwhelming the content.</p>
-            </div>
-        </section>
-
-        <!-- Legacy & Impact -->
-        <section class="section-legacy">
-            <div class="grid-container">
-                <h2>Enduring Legacy</h2>
-                <div class="legacy-content">
-                    <div class="legacy-text">
-                        <p>The International Typographic Style revolutionized graphic design and continues to influence contemporary designers. Its emphasis on clarity, objectivity, and systematic thinking laid the foundation for modern corporate identity design, wayfinding systems, and digital interface design.</p>
-                        <p>Today's minimalist design trends, from Apple's iOS to material design principles, owe a significant debt to the Swiss pioneers who proved that "less is more" could be both beautiful and functional.</p>
-                    </div>
-                    <div class="legacy-examples">
-                        <h3>Modern Applications</h3>
-                        <ul>
-                            <li>Corporate Brand Identity Systems</li>
-                            <li>Airport & Transportation Signage</li>
-                            <li>User Interface Design</li>
-                            <li>Editorial & Publication Design</li>
-                            <li>Exhibition & Museum Graphics</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="swiss-footer">
-        <div class="grid-container">
-            <p>&copy; 2025 Design Style Study. Educational purposes.</p>
-            <nav aria-label="Footer Navigation">
-                <a href="../">Back to Portfolio Hub</a>
-            </nav>
+    <div style="background: linear-gradient(135deg, rgba(98,0,238,0.1), rgba(3,218,198,0.1)); border-radius: 16px; padding: 2.5rem; border-left: 4px solid var(--color-primary);" class="animate delay-2">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 600;">⭐ Key Differentiators from Swiss Design</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+        <div>
+          <p style="color: var(--color-primary); font-weight: 700; margin-bottom: 0.5rem;">Grid System</p>
+          <p style="color: var(--text-secondary); margin: 0;">Swiss: Asymmetric | Material: Symmetric, 8dp baseline</p>
         </div>
-    </footer>
+        <div>
+          <p style="color: var(--color-secondary); font-weight: 700; margin-bottom: 0.5rem;">Color</p>
+          <p style="color: var(--text-secondary); margin: 0;">Swiss: Limited | Material: Bold, vibrant palettes</p>
+        </div>
+        <div>
+          <p style="color: var(--color-accent); font-weight: 700; margin-bottom: 0.5rem;">Depth</p>
+          <p style="color: var(--text-secondary); margin: 0;">Swiss: Flat 2D | Material: Elevation, 3D z-axis</p>
+        </div>
+        <div>
+          <p style="color: var(--color-tertiary); font-weight: 700; margin-bottom: 0.5rem;">Motion</p>
+          <p style="color: var(--text-secondary); margin: 0;">Swiss: Minimal | Material: Expressive, meaningful</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Color System Section -->
+<section id="color-system" class="section">
+  <div class="container">
+    <h2 class="section-title animate">🎨 Material Color System</h2>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;" class="animate delay-1">
+      Material uses tonal palettes (50–900) for every color, ensuring WCAG AA contrast compliance across all combinations.
+    </p>
+
+    <div style="background: var(--surface); border-radius: 16px; padding: 2rem; margin-bottom: 2rem;" class="animate delay-2">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 600;">Primary Palette (Purple)</h3>
+      <div class="color-swatch-grid">
+        <div class="color-swatch" style="background: #F0E6FF;"><small style="color: #6200EE; text-shadow: none;">50</small></div>
+        <div class="color-swatch" style="background: #E6D5FF;"><small style="color: #6200EE; text-shadow: none;">100</small></div>
+        <div class="color-swatch" style="background: #D9C4FF;"><small>200</small></div>
+        <div class="color-swatch" style="background: #CBADFF;"><small>300</small></div>
+        <div class="color-swatch" style="background: #BF96FF;"><small>400</small></div>
+        <div class="color-swatch" style="background: #B388FF;"><small>500</small></div>
+        <div class="color-swatch" style="background: #A571FF;"><small>600</small></div>
+        <div class="color-swatch" style="background: #9555FF;"><small>700</small></div>
+        <div class="color-swatch" style="background: #7D39FF;"><small>800</small></div>
+        <div class="color-swatch" style="background: #6200EE;"><small>900</small></div>
+      </div>
+    </div>
+
+    <div style="background: var(--surface); border-radius: 16px; padding: 2rem; margin-bottom: 2rem;" class="animate delay-2">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 600;">Secondary & Tertiary Accents</h3>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div>
+          <h4 style="color: var(--color-secondary); margin-bottom: 1rem; font-weight: 600;">Secondary (Teal)</h4>
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
+            <div class="color-swatch" style="background: #E1F5F9; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #80DEEA; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #26C6DA; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #00BCD4; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #03DAC6; height: 60px; border-radius: 8px;"></div>
+          </div>
+        </div>
+        <div>
+          <h4 style="color: var(--color-tertiary); margin-bottom: 1rem; font-weight: 600;">Tertiary (Gold)</h4>
+          <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 0.5rem;">
+            <div class="color-swatch" style="background: #FFF8E1; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #FFE082; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #FFD54F; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #FFC400; height: 60px; border-radius: 8px;"></div>
+            <div class="color-swatch" style="background: #FFB700; height: 60px; border-radius: 8px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, rgba(98,0,238,0.08), rgba(3,218,198,0.08)); border-radius: 16px; padding: 2rem;" class="animate delay-3">
+      <h4 style="color: var(--text); margin-bottom: 1rem; font-weight: 600;">✓ Color System Best Practices</h4>
+      <ul style="color: var(--text-secondary); line-height: 2; margin: 0; padding-left: 1.5rem;">
+        <li>Use 500 as your base color reference</li>
+        <li>Test all pairs for WCAG AA contrast (4.5:1 minimum)</li>
+        <li>Light tones (50–300) for surfaces and backgrounds</li>
+        <li>Dark tones (600–900) for text and primary actions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Typography Section -->
+<section id="typography" class="section" style="background: #F8F8FF;">
+  <div class="container">
+    <h2 class="section-title animate">📝 Typography Scale</h2>
+
+    <div style="background: var(--surface); border-radius: 16px; padding: 2.5rem;" class="animate delay-2">
+      <div class="type-scale">
+        <div class="type-scale-item">
+          <div class="type-label">H1 • 96px Light</div>
+          <h1 style="font-size: 96px; font-weight: 300; margin: 0; line-height: 1.2; letter-spacing: -1.5px;">Headline Large</h1>
+        </div>
+        <div class="type-scale-item">
+          <div class="type-label">H2 • 60px Light</div>
+          <h2 style="font-size: 60px; font-weight: 300; margin: 0; line-height: 1.2; letter-spacing: -0.5px;">Headline Medium</h2>
+        </div>
+        <div class="type-scale-item">
+          <div class="type-label">H3 • 48px Regular</div>
+          <h3 style="font-size: 48px; font-weight: 400; margin: 0; line-height: 1.2;">Headline Small</h3>
+        </div>
+        <div class="type-scale-item">
+          <div class="type-label">H4 • 34px Regular</div>
+          <h4 style="font-size: 34px; font-weight: 400; margin: 0; line-height: 1.2; letter-spacing: 0.25px;">Title Large</h4>
+        </div>
+        <div class="type-scale-item">
+          <div class="type-label">Body • 16px Regular (1.5 line-height)</div>
+          <p style="font-size: 16px; font-weight: 400; margin: 0; line-height: 1.5; letter-spacing: 0.5px;">Body text is the primary text for reading. Use generous line-height and readable widths (45-75 characters). Ensure proper contrast and readable sizing.</p>
+        </div>
+        <div class="type-scale-item">
+          <div class="type-label">Label • 14px Medium</div>
+          <p style="font-size: 14px; font-weight: 500; margin: 0; line-height: 1.4; letter-spacing: 0.1px;">Labels for buttons, form fields, and UI controls</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Elevation Section -->
+<section id="elevation" class="section">
+  <div class="container">
+    <h2 class="section-title animate">🔝 Elevation & Shadow System</h2>
+    <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;" class="animate delay-1">
+      0–24dp elevation levels with layered ambient + directional shadows for realistic depth.
+    </p>
+
+    <div class="elevation-showcase animate delay-2">
+      <div class="elevation-box elevation-1"><div style="font-size: 2rem; margin-bottom: 0.5rem;">📄</div><p style="margin: 0;">Elevation 1</p><p style="font-size: 0.8rem; margin: 0.25rem 0 0 0;">Subtle</p></div>
+      <div class="elevation-box elevation-2"><div style="font-size: 2rem; margin-bottom: 0.5rem;">📋</div><p style="margin: 0;">Elevation 2</p><p style="font-size: 0.8rem; margin: 0.25rem 0 0 0;">Cards</p></div>
+      <div class="elevation-box elevation-4"><div style="font-size: 2rem; margin-bottom: 0.5rem;">🎨</div><p style="margin: 0;">Elevation 4</p><p style="font-size: 0.8rem; margin: 0.25rem 0 0 0;">App bars</p></div>
+      <div class="elevation-box elevation-6"><div style="font-size: 2rem; margin-bottom: 0.5rem;">⭐</div><p style="margin: 0;">Elevation 6</p><p style="font-size: 0.8rem; margin: 0.25rem 0 0 0;">FABs</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Components Section -->
+<section id="components" class="section" style="background: #F8F8FF;">
+  <div class="container">
+    <h2 class="section-title animate">🧩 Material Components</h2>
+
+    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-1);" class="animate delay-1">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Buttons — All States</h3>
+      <div class="component-grid">
+        <div class="component-card">
+          <div class="component-preview"><button class="btn-primary ripple" style="margin: 0; font-size: 1rem; padding: 0.75rem 1.5rem;">Filled</button></div>
+          <p style="color: var(--text); font-weight: 600; margin: 0; font-size: 0.95rem;">Filled Button</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0.5rem 0 0 0;">Primary action</p>
+        </div>
+        <div class="component-card">
+          <div class="component-preview"><button class="btn-outline ripple" style="margin: 0; font-size: 1rem; padding: 0.75rem 1.5rem;">Outlined</button></div>
+          <p style="color: var(--text); font-weight: 600; margin: 0; font-size: 0.95rem;">Outlined Button</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0.5rem 0 0 0;">Secondary action</p>
+        </div>
+        <div class="component-card">
+          <div class="component-preview"><button style="background: transparent; border: none; color: var(--color-primary); font-weight: 600; padding: 0.75rem 1.5rem; cursor: pointer; border-radius: 8px; transition: background 0.3s; margin: 0; font-size: 1rem;" onmouseover="this.style.background='rgba(98,0,238,0.08)'" onmouseout="this.style.background='transparent'">Text</button></div>
+          <p style="color: var(--text); font-weight: 600; margin: 0; font-size: 0.95rem;">Text Button</p>
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0.5rem 0 0 0;">Tertiary action</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: white; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-1);" class="animate delay-2">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Cards — Elevation Variants</h3>
+      <div class="component-grid">
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-1); border: 1px solid rgba(0,0,0,0.04);"><div style="font-size: 2rem; margin-bottom: 1rem;">📊</div><h5 style="color: var(--text); font-weight: 600; margin-bottom: 0.5rem;">Outlined</h5><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Elevation 0</p></div>
+        <div style="background: white; border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-4); cursor: pointer; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-4px)'" onmouseout="this.style.transform='translateY(0)'"><div style="font-size: 2rem; margin-bottom: 1rem;">💳</div><h5 style="color: var(--text); font-weight: 600; margin-bottom: 0.5rem;">Elevated</h5><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Elevation 4</p></div>
+        <div style="background: linear-gradient(135deg, #F0E6FF, #E6F7FF); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow-6);"><div style="font-size: 2rem; margin-bottom: 1rem;">⭐</div><h5 style="color: var(--text); font-weight: 600; margin-bottom: 0.5rem;">Filled</h5><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">Elevation 6</p></div>
+      </div>
+    </div>
+
+    <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-1);" class="animate delay-3">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Chips — Interactive Tags</h3>
+      <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+        <button style="padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(98,0,238,0.3); background: rgba(98,0,238,0.08); color: var(--color-primary); font-weight: 500; cursor: pointer; transition: all 0.3s; font-size: 0.9rem;" onmouseover="this.style.background='rgba(98,0,238,0.15)'" onmouseout="this.style.background='rgba(98,0,238,0.08)'">✓ Material</button>
+        <button style="padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid rgba(3,218,198,0.3); background: rgba(3,218,198,0.08); color: var(--color-secondary); font-weight: 500; cursor: pointer; transition: all 0.3s; font-size: 0.9rem;" onmouseover="this.style.background='rgba(3,218,198,0.15)'" onmouseout="this.style.background='rgba(3,218,198,0.08)'">✓ Accessible</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Motion Section -->
+<section id="motion" class="section" style="background: #F8F8FF;">
+  <div class="container">
+    <h2 class="section-title animate">⚡ Motion & Easing</h2>
+
+    <!-- Interactive Motion Playground -->
+    <div style="background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--shadow-1);" class="animate delay-1">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 700;">🎮 Interactive Motion Playground</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 2rem; font-size: 0.95rem;">Click buttons to see Material Design motion in action</p>
+      
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 250px; display: flex; justify-content: center; align-items: center; background: linear-gradient(135deg, rgba(98,0,238,0.05), rgba(3,218,198,0.05)); border-radius: 12px; padding: 3rem; min-height: 250px;">
+          <div id="motionBox" style="width: 100px; height: 100px; background: linear-gradient(135deg, #6200EE, #03DAC6); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 2rem; box-shadow: 0 4px 12px rgba(98,0,238,0.3);">
+            🎨
+          </div>
+        </div>
+        
+        <div style="flex: 1; min-width: 250px;">
+          <div style="display: grid; gap: 0.75rem;">
+            <button onclick="animateBox('bounce')" style="padding: 0.75rem 1.5rem; background: var(--color-primary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(98,0,238,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(98,0,238,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(98,0,238,0.3)'">
+              ⬆️ Bounce
+            </button>
+            <button onclick="animateBox('slide')" style="padding: 0.75rem 1.5rem; background: var(--color-secondary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(3,218,198,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(3,218,198,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(3,218,198,0.3)'">
+              ➡️ Slide
+            </button>
+            <button onclick="animateBox('rotate')" style="padding: 0.75rem 1.5rem; background: var(--color-tertiary); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(255,183,3,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(255,183,3,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(255,183,3,0.3)'">
+              🔄 Rotate
+            </button>
+            <button onclick="animateBox('scale')" style="padding: 0.75rem 1.5rem; background: var(--color-accent); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(255,101,132,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(255,101,132,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(255,101,132,0.3)'">
+              🔍 Scale
+            </button>
+            <button onclick="animateBox('morph')" style="padding: 0.75rem 1.5rem; background: linear-gradient(135deg, #6200EE, #03DAC6); color: white; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.3s; box-shadow: 0 2px 8px rgba(98,0,238,0.3);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(98,0,238,0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(98,0,238,0.3)'">
+              ✨ Morph
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: var(--surface); border-radius: 16px; padding: 2rem; margin-bottom: 2rem;" class="animate delay-2">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Standard Easing & Durations</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+        <div><h4 style="color: var(--color-primary); margin-bottom: 0.5rem; font-weight: 600;">Standard Easing</h4><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">cubic-bezier(0.4, 0, 0.2, 1)</p></div>
+        <div><h4 style="color: var(--color-secondary); margin-bottom: 0.5rem; font-weight: 600;">Short Duration</h4><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">100–150ms</p></div>
+        <div><h4 style="color: var(--color-tertiary); margin-bottom: 0.5rem; font-weight: 600;">Standard Duration</h4><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">200–300ms</p></div>
+        <div><h4 style="color: var(--color-accent); margin-bottom: 0.5rem; font-weight: 600;">Long Duration</h4><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">375–400ms</p></div>
+      </div>
+    </div>
+
+    <!-- Material Easing Curves Reference -->
+    <details style="margin-bottom: 2rem; border: 2px solid rgba(98,0,238,0.2); border-radius: 12px; overflow: hidden; background: white;">
+      <summary style="padding: 1rem 1.5rem; background: linear-gradient(135deg, rgba(98,0,238,0.1), rgba(3,218,198,0.1)); cursor: pointer; font-weight: 700; color: var(--color-primary); display: flex; justify-content: space-between; align-items: center;">
+        <span>💎 Material Easing Curves Reference</span>
+        <span style="font-size: 0.9rem; color: var(--text-secondary);">Click to expand</span>
+      </summary>
+      <div style="padding: 1.5rem; background: #f5f5f5;">
+        <h4 style="margin: 0 0 1rem 0; color: var(--text); font-size: 1rem;">All Material Design Easing Functions</h4>
+        <pre style="background: #2d2d2d; color: #f8f8f2; padding: 1.5rem; border-radius: 8px; overflow-x: auto; font-size: 0.9rem; line-height: 1.8; margin: 0;"><code><span style="color: #6272a4;">/* Standard Easing - Default for most transitions */</span>
+<span style="color: #50fa7b;">.material-standard</span> {
+  <span style="color: #ff79c6;">transition</span>: <span style="color: #f1fa8c;">all 0.3s cubic-bezier(0.4, 0, 0.2, 1)</span>;
+}
+
+<span style="color: #6272a4;">/* Emphasized Easing - For entering elements */</span>
+<span style="color: #50fa7b;">.material-emphasized-enter</span> {
+  <span style="color: #ff79c6;">transition</span>: <span style="color: #f1fa8c;">all 0.4s cubic-bezier(0.05, 0.7, 0.1, 1)</span>;
+}</code></pre>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- Grid Section -->
+<section id="grid" class="section">
+  <div class="container">
+    <h2 class="section-title animate">🔲 8dp Grid System</h2>
+
+    <div style="background: var(--surface); border-radius: 16px; padding: 2rem; margin-bottom: 2rem;" class="animate delay-2">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Grid Visualization</h3>
+      <div class="grid-viz">
+        <div class="grid-cell">1</div><div class="grid-cell">2</div><div class="grid-cell">3</div><div class="grid-cell">4</div>
+        <div class="grid-cell">5</div><div class="grid-cell">6</div><div class="grid-cell">7</div><div class="grid-cell">8</div>
+      </div>
+      <p style="color: var(--text-secondary); font-size: 0.9rem; margin: 1rem 0 0 0;">Each cell = 8dp. Use multiples for all spacing and sizing.</p>
+    </div>
+
+    <div style="background: white; border-radius: 16px; padding: 2rem; box-shadow: var(--shadow-1);" class="animate delay-3">
+      <h3 style="color: var(--text); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Responsive Breakpoints</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+        <div style="padding: 1.5rem; background: rgba(98,0,238,0.08); border-radius: 8px;"><p style="color: var(--color-primary); font-weight: 600; margin-bottom: 0.5rem;">Mobile</p><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">&lt; 600px • 4-column</p></div>
+        <div style="padding: 1.5rem; background: rgba(3,218,198,0.08); border-radius: 8px;"><p style="color: var(--color-secondary); font-weight: 600; margin-bottom: 0.5rem;">Tablet</p><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">600–1023px • 8-column</p></div>
+        <div style="padding: 1.5rem; background: rgba(255,183,3,0.08); border-radius: 8px;"><p style="color: var(--color-tertiary); font-weight: 600; margin-bottom: 0.5rem;">Desktop</p><p style="color: var(--text-secondary); font-size: 0.9rem; margin: 0;">≥ 1024px • 12-column</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Checklist Section -->
+<section id="checklist" class="section" style="background: #F8F8FF;">
+  <div class="container">
+    <h2 class="section-title animate">✅ Material Design Authenticity Checklist</h2>
+
+    <div style="background: white; border-radius: 16px; padding: 2.5rem; box-shadow: var(--shadow-1);" class="animate delay-2">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+        <div>
+          <h3 style="color: var(--color-primary); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Visual & Layout</h3>
+          <ul style="color: var(--text-secondary); line-height: 2; margin: 0; padding-left: 1.5rem;">
+            <li>[ ] 8dp grid system used</li>
+            <li>[ ] Elevation hierarchy (0–24dp)</li>
+            <li>[ ] Shadows: ambient + directional</li>
+            <li>[ ] Bold, saturated colors</li>
+            <li>[ ] Roboto font family</li>
+            <li>[ ] Material type scale</li>
+            <li>[ ] Touch targets ≥48×48dp</li>
+            <li>[ ] Responsive layouts</li>
+          </ul>
+        </div>
+        <div>
+          <h3 style="color: var(--color-secondary); margin-bottom: 1.5rem; font-size: 1.1rem; font-weight: 600;">Interaction & Accessibility</h3>
+          <ul style="color: var(--text-secondary); line-height: 2; margin: 0; padding-left: 1.5rem;">
+            <li>[ ] Material easing curves</li>
+            <li>[ ] Durations: 100–400ms</li>
+            <li>[ ] Ripple effects present</li>
+            <li>[ ] Focus indicators visible</li>
+            <li>[ ] WCAG AA contrast (4.5:1)</li>
+            <li>[ ] Respects prefers-reduced-motion</li>
+            <li>[ ] Alt text on images</li>
+            <li>[ ] Semantic HTML</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="background: linear-gradient(135deg, #6200EE, #03DAC6); color: white; padding: 3rem 0; margin-top: 4rem;">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-bottom: 2rem;">
+      <div>
+        <h3 style="margin-top: 0; margin-bottom: 1rem; font-weight: 600;">Resources</h3>
+        <ul style="list-style: none; margin: 0; padding: 0; line-height: 2;">
+          <li><a href="https://m3.material.io/" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Material Design 3</a></li>
+          <li><a href="https://m3.material.io/components" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Components</a></li>
+          <li><a href="https://m3.material.io/motion" target="_blank" rel="noopener" style="color: white; text-decoration: none;">Motion</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-top: 0; margin-bottom: 1rem; font-weight: 600;">Creators</h3>
+        <ul style="list-style: none; margin: 0; padding: 0; line-height: 2; color: rgba(255,255,255,0.9);">
+          <li>Matias Duarte</li>
+          <li>Nicholas Jitkoff</li>
+          <li>Rachel Been</li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 1.5rem; text-align: center; color: rgba(255,255,255,0.8); font-size: 0.9rem;">
+      <p style="margin: 0;">© 2025 Material Design Showcase • All content follows Material Design 3 standards • <strong>Try the interactive demos above!</strong></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Active nav highlighting
+  const navLinks = document.querySelectorAll('.sticky-nav a');
+  const sections = document.querySelectorAll('section[id]');
+
+  function setActiveNav() {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (window.scrollY >= sectionTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href').slice(1) === current) {
+        link.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', setActiveNav);
+
+  // Ripple effect
+  document.querySelectorAll('.ripple').forEach(element => {
+    element.addEventListener('click', function(e) {
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple-effect';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      this.appendChild(ripple);
+
+      setTimeout(() => ripple.remove(), 600);
+    });
+  });
+
+  // Intersection Observer for animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.animate').forEach(el => {
+    observer.observe(el);
+  });
+
+  // Mobile Menu Toggle
+  function toggleMenu() {
+    const nav = document.getElementById('mainNav');
+    const toggle = document.querySelector('.menu-toggle');
+    nav.classList.toggle('active');
+    toggle.classList.toggle('active');
+  }
+
+  function closeMenu() {
+    const nav = document.getElementById('mainNav');
+    const toggle = document.querySelector('.menu-toggle');
+    nav.classList.remove('active');
+    toggle.classList.remove('active');
+  }
+
+  // Motion Box Animation
+  function animateBox(type) {
+    const box = document.getElementById('motionBox');
+    
+    // Reset all styles
+    box.style.animation = 'none';
+    box.style.transform = '';
+    box.style.borderRadius = '16px';
+    box.style.background = 'linear-gradient(135deg, #6200EE, #03DAC6)';
+    
+    // Force reflow
+    void box.offsetWidth;
+    
+    setTimeout(() => {
+      if (type === 'bounce') {
+        box.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        box.style.transform = 'translateY(-80px)';
+        setTimeout(() => {
+          box.style.transform = 'translateY(0)';
+        }, 400);
+      } else if (type === 'slide') {
+        box.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
+        box.style.transform = 'translateX(150px)';
+        setTimeout(() => {
+          box.style.transform = 'translateX(0)';
+        }, 400);
+      } else if (type === 'rotate') {
+        box.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        box.style.transform = 'rotate(720deg)';
+        setTimeout(() => {
+          box.style.transform = '';
+        }, 600);
+      } else if (type === 'scale') {
+        box.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        box.style.transform = 'scale(2)';
+        setTimeout(() => {
+          box.style.transform = 'scale(1)';
+        }, 400);
+      } else if (type === 'morph') {
+        box.style.transition = 'all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+        box.style.transform = 'rotate(360deg) scale(1.5)';
+        box.style.borderRadius = '50%';
+        box.style.background = '#FFB703';
+        setTimeout(() => {
+          box.style.transform = 'rotate(0) scale(1)';
+          box.style.borderRadius = '16px';
+          box.style.background = 'linear-gradient(135deg, #6200EE, #03DAC6)';
+        }, 600);
+      }
+    }, 50);
+  }
+</script>
 </body>
 </html>

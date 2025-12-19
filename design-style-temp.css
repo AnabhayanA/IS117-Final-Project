@@ -1,0 +1,505 @@
+/* Swiss International Style - Design System */
+
+:root {
+    --swiss-black: #000000;
+    --swiss-white: #ffffff;
+    --swiss-red: #ee0000;
+    --swiss-blue: #0066cc;
+    --swiss-yellow: #ffcc00;
+    --swiss-gray: #cccccc;
+    --swiss-gray-light: #f5f5f5;
+}
+
+/* Typography - Helvetica-inspired */
+body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--swiss-black);
+    background-color: var(--swiss-white);
+}
+
+/* Grid System - 12 columns */
+.grid-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+}
+
+.grid-container > * {
+    grid-column: 1 / -1;
+}
+
+/* Swiss Header - Asymmetric Layout */
+.swiss-header {
+    background-color: var(--swiss-black);
+    color: var(--swiss-white);
+    padding: 4rem 0;
+}
+
+.swiss-header nav {
+    grid-column: 1 / 4;
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    color: var(--swiss-white);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover,
+.back-link:focus {
+    color: var(--swiss-red);
+}
+
+.header-title {
+    grid-column: 1 / 9;
+}
+
+.header-title h1 {
+    font-size: clamp(2.5rem, 4vw, 5rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    margin-top: 1rem;
+    color: var(--swiss-gray);
+}
+
+/* Introduction Section - Two Column Asymmetric */
+.section-intro {
+    padding: 6rem 0;
+}
+
+.intro-layout {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    grid-column: 1 / -1;
+}
+
+.intro-text {
+    grid-column: 1 / 8;
+}
+
+.intro-text h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.intro-text p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+}
+
+.intro-quote {
+    grid-column: 9 / 13;
+    background-color: var(--swiss-gray-light);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.intro-quote blockquote {
+    margin: 0;
+}
+
+.intro-quote p {
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.intro-quote cite {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+/* Core Principles - Grid Layout */
+.section-principles {
+    background-color: var(--swiss-gray-light);
+    padding: 6rem 0;
+}
+
+.section-principles h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+    grid-column: 1 / -1;
+}
+
+.principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    grid-column: 1 / -1;
+}
+
+.principle-card {
+    background-color: var(--swiss-white);
+    padding: 2rem;
+    border-left: 4px solid var(--swiss-black);
+}
+
+.principle-number {
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--swiss-red);
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.principle-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.principle-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333333;
+}
+
+/* Key Figures Section */
+.section-figures {
+    padding: 6rem 0;
+}
+
+.section-figures h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.figures-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    grid-column: 1 / -1;
+}
+
+.figure-card {
+    border-top: 2px solid var(--swiss-black);
+    padding-top: 1rem;
+}
+
+.figure-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
+.years {
+    font-size: 0.875rem;
+    color: var(--swiss-red);
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.figure-card p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+}
+
+/* Typography Showcase */
+.section-typography {
+    background-color: var(--swiss-black);
+    color: var(--swiss-white);
+    padding: 6rem 0;
+}
+
+.section-typography h2 {
+    color: var(--swiss-white);
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.type-demo {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    grid-column: 1 / -1;
+}
+
+.type-specimen {
+    grid-column: 1 / 5;
+    text-align: center;
+}
+
+.type-large {
+    font-size: clamp(8rem, 15vw, 12rem);
+    font-weight: 300;
+    line-height: 1;
+}
+
+.type-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--swiss-gray);
+    margin-top: 1rem;
+}
+
+.type-hierarchy {
+    grid-column: 5 / -1;
+}
+
+.demo-h1 {
+    font-size: clamp(3rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+}
+
+.demo-h2 {
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.demo-h3 {
+    font-size: clamp(1.5rem, 2vw, 1.75rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.demo-body {
+    font-size: 1rem;
+    line-height: 1.6;
+    font-weight: 400;
+}
+
+/* Color Theory Section */
+.section-color {
+    padding: 6rem 0;
+}
+
+.section-color h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.color-swatches {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+    grid-column: 1 / -1;
+    margin-bottom: 2rem;
+}
+
+.swatch {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    transition: transform 0.3s ease;
+}
+
+.swatch:hover {
+    transform: scale(1.05);
+}
+
+.swatch span {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.swatch code {
+    font-size: 0.75rem;
+    font-family: 'Courier New', monospace;
+}
+
+.swatch-black {
+    background-color: var(--swiss-black);
+    color: var(--swiss-white);
+}
+
+.swatch-white {
+    background-color: var(--swiss-white);
+    color: var(--swiss-black);
+    border: 1px solid var(--swiss-gray);
+}
+
+.swatch-red {
+    background-color: var(--swiss-red);
+    color: var(--swiss-white);
+}
+
+.swatch-blue {
+    background-color: var(--swiss-blue);
+    color: var(--swiss-white);
+}
+
+.swatch-yellow {
+    background-color: var(--swiss-yellow);
+    color: var(--swiss-black);
+}
+
+.color-description {
+    grid-column: 1 / -1;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    max-width: 800px;
+}
+
+/* Legacy Section */
+.section-legacy {
+    background-color: var(--swiss-gray-light);
+    padding: 6rem 0;
+}
+
+.section-legacy h2 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.legacy-content {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+    grid-column: 1 / -1;
+}
+
+.legacy-text {
+    grid-column: 1 / 8;
+}
+
+.legacy-text p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.legacy-examples {
+    grid-column: 9 / 13;
+    background-color: var(--swiss-white);
+    padding: 2rem;
+}
+
+.legacy-examples h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.legacy-examples ul {
+    list-style: none;
+    padding: 0;
+}
+
+.legacy-examples li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--swiss-gray);
+    font-size: 0.9375rem;
+}
+
+.legacy-examples li:last-child {
+    border-bottom: none;
+}
+
+/* Footer */
+.swiss-footer {
+    background-color: var(--swiss-black);
+    color: var(--swiss-white);
+    padding: 3rem 0;
+}
+
+.swiss-footer .grid-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.swiss-footer p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.swiss-footer a {
+    color: var(--swiss-white);
+    text-decoration: none;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+.swiss-footer a:hover,
+.swiss-footer a:focus {
+    color: var(--swiss-red);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .intro-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .intro-text,
+    .intro-quote {
+        grid-column: 1 / -1;
+    }
+    
+    .type-demo {
+        grid-template-columns: 1fr;
+    }
+    
+    .type-specimen,
+    .type-hierarchy {
+        grid-column: 1 / -1;
+    }
+    
+    .legacy-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .legacy-text,
+    .legacy-examples {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid-container {
+        padding: 0 1rem;
+    }
+    
+    .swiss-header {
+        padding: 2rem 0;
+    }
+    
+    .section-intro,
+    .section-principles,
+    .section-figures,
+    .section-typography,
+    .section-color,
+    .section-legacy {
+        padding: 3rem 0;
+    }
+    
+    .swiss-footer .grid-container {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+}
