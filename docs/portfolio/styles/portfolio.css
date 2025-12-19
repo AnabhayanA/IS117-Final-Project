@@ -187,19 +187,19 @@
 }
 
 .btn-secondary {
-    background-color: transparent;
-    color: #ff00ff;
-    border: 3px solid #ff00ff;
-    box-shadow: 0 4px 20px rgba(255, 0, 255, 0.4), 0 0 20px rgba(255, 0, 255, 0.2);
+    background-color: #000000;
+    color: #ff0000;
+    border: 3px solid #ff0000;
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4), 0 0 20px rgba(255, 0, 0, 0.3);
 }
 
 .btn-secondary:hover,
 .btn-secondary:focus {
-    background: linear-gradient(135deg, #ff00ff 0%, #b026ff 100%);
-    color: white;
-    border-color: #ff00ff;
+    background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
+    color: #000000;
+    border-color: #ff0000;
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 30px rgba(255, 0, 255, 0.6), 0 0 40px rgba(255, 0, 255, 0.4);
+    box-shadow: 0 8px 30px rgba(255, 0, 0, 0.7), 0 0 40px rgba(255, 0, 0, 0.5);
 }
 
 .btn-secondary:active {
