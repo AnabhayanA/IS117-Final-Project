@@ -4,10 +4,10 @@
     font-size: clamp(1rem, 0.92rem + 0.39vw, 1.25rem);
     
     /* Color Palette */
-    --color-primary: #2563eb;
-    --color-primary-dark: #1e40af;
-    --color-secondary: #7c3aed;
-    --color-accent: #f59e0b;
+    --color-primary: #f59e0b;
+    --color-primary-dark: #d97706;
+    --color-secondary: #dc2626;
+    --color-accent: #ea580c;
     --color-bg: #ffffff;
     --color-text: #1f2937;
     --color-text-light: #6b7280;
@@ -80,8 +80,8 @@ p {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-    color: white;
+    background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+    color: #78350f;
     padding: var(--spacing-xl) var(--spacing-sm);
     text-align: center;
     animation: fadeIn 1s ease-in;
@@ -89,7 +89,8 @@ p {
 
 .tagline {
     font-size: clamp(1.125rem, 1.05rem + 0.37vw, 1.5rem);
-    opacity: 0.9;
+    opacity: 0.8;
+    color: #92400e;
 }
 
 /* Portfolio Grid */
