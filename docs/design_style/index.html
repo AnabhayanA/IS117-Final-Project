@@ -82,16 +82,15 @@
   /* Hamburger Menu - Always visible on mobile/tablet */
   .menu-toggle {
     display: none;
-    position: absolute;
+    position: fixed;
     right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 1rem;
     background: white;
     border: 2px solid var(--color-primary);
     border-radius: 12px;
     cursor: pointer;
     padding: 0.6rem;
-    z-index: 1001;
+    z-index: 10001;
     width: 48px;
     height: 48px;
     box-shadow: 0 6px 20px rgba(98, 0, 238, 0.25);
@@ -106,6 +105,9 @@
   @media (max-width: 1200px) {
     .menu-toggle {
       display: flex !important;
+    }
+    .sticky-nav {
+      display: none;
     }
     .sticky-nav nav {
       display: none;
@@ -170,17 +172,12 @@
 
   @media (max-width: 1200px) {
     .sticky-nav { 
-      position: sticky;
-      height: 60px;
-      background: white;
-      display: flex;
-      align-items: center;
-      padding: 0 1rem;
+      display: none;
     }
     .sticky-nav nav {
       display: flex;
       position: fixed;
-      top: 70px;
+      top: 0;
       left: 0;
       right: 0;
       background: white;
@@ -193,9 +190,11 @@
       visibility: hidden;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       border-top: 3px solid var(--color-primary);
+      padding-top: 60px;
     }
     .sticky-nav nav.active {
-      max-height: 80vh;
+      display: flex;
+      max-height: 100vh;
       opacity: 1;
       visibility: visible;
       overflow-y: auto;
@@ -272,13 +271,15 @@
 </head>
 <body>
 
+<!-- Hamburger Menu Button (Mobile Only) -->
+<button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
+  <span></span>
+  <span></span>
+  <span></span>
+</button>
+
 <!-- Sticky Navigation Bar -->
 <div class="sticky-nav">
-  <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle menu">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
   <nav id="mainNav">
     <a href="../" class="nav-link" onclick="closeMenu()">← Hub</a>
     <a href="#hero" class="nav-link" onclick="closeMenu()">🏠 Home</a>
