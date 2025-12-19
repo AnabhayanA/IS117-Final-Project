@@ -592,6 +592,8 @@
 .testimonial p {
     position: relative;
     z-index: 1;
+    color: #d0d0d0;
+    line-height: 1.6;
 }
 
 .testimonial cite {
