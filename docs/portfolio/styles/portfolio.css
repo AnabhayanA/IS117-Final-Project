@@ -232,6 +232,7 @@
     position: relative;
     display: inline-block;
     padding-bottom: 0.5rem;
+    color: #00ffff;
     background: linear-gradient(135deg, #00ffff 0%, #ff00ff 50%, #00d9ff 100%);
     background-clip: text;
     /* stylelint-disable-next-line property-no-vendor-prefix */
@@ -240,7 +241,6 @@
     font-weight: 800;
     animation: gradient-shift 6s ease infinite;
     background-size: 200% 200%;
-    text-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
     filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.7));
 }
 
