@@ -19,23 +19,23 @@ html {
   --space-3: calc(var(--unit) * 2);  /* 16px */
   --space-4: calc(var(--unit) * 3);  /* 24px */
   --space-5: calc(var(--unit) * 4);  /* 32px */
-  --color-primary: #ff0000;
-  --color-primary-dark: #cc0000;
-  --color-primary-light: #ff4444;
-  --color-secondary: #000000;
-  --color-secondary-light: #1a0000;
-  --color-accent: #ff0000;
-  --color-accent-light: #ff4444;
-  --color-tertiary: #cc0000;
-  --color-info: #ff0000;
-  --surface: #000000;
-  --surface-dark: #1a0000;
-  --surface-accent: #2a0000;
-  --surface-warm: #1a0000;
-  --background: #000000;
-  --background-gradient: linear-gradient(135deg, #000000 0%, #1a0000 100%);
-  --text: #ffffff;
-  --text-secondary: #cccccc;
+  --color-primary: #6200EE;
+  --color-primary-dark: #3700b3;
+  --color-primary-light: #8c45ff;
+  --color-secondary: #03DAC6;
+  --color-secondary-light: #66fff9;
+  --color-accent: #FF6B9D;
+  --color-accent-light: #FF9CBE;
+  --color-tertiary: #FFB703;
+  --color-info: #0077B6;
+  --surface: #FFFFFF;
+  --surface-dark: #F3E5FF;
+  --surface-accent: #E0F7FA;
+  --surface-warm: #FFF3E0;
+  --background: #F5F5F7;
+  --background-gradient: linear-gradient(135deg, #F5F5F7 0%, #E8F5E9 100%);
+  --text: #1F1F1F;
+  --text-secondary: #555555;
 
   /* legacy aliases (kept for combined CSS compatibility) */
   --primary: var(--color-primary);
