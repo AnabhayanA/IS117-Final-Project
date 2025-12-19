@@ -46,8 +46,8 @@
 
 /* Hero Portfolio */
 .hero-portfolio {
-    background: linear-gradient(135deg, #cc0000 0%, #ff0000 100%);
-    color: #000000;
+    background: linear-gradient(135deg, #1a0033 0%, #330066 50%, #4a0080 100%);
+    color: #FFB800;
     padding: calc(var(--spacing-xl) * 1.5) var(--spacing-sm);
     text-align: center;
     position: relative;
