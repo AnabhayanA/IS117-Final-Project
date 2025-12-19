@@ -3,12 +3,12 @@
     /* Base font size: 16px at 320px → 20px at 1400px */
     font-size: clamp(1rem, 0.92rem + 0.39vw, 1.25rem);
     
-    /* Color Palette */
-    --color-primary: #f59e0b;
-    --color-primary-dark: #d97706;
-    --color-secondary: #dc2626;
-    --color-accent: #ea580c;
-    --color-bg: #ffffff;
+    /* Color Palette - Dark Mocha */
+    --color-primary: #8b5a3c;
+    --color-primary-dark: #5d3a22;
+    --color-secondary: #a67c52;
+    --color-accent: #d4a574;
+    --color-bg: #1a1410;
     --color-text: #1f2937;
     --color-text-light: #6b7280;
     --color-border: #e5e7eb;
@@ -43,7 +43,7 @@ body {
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
     line-height: 1.6;
-    color: var(--color-text);
+    color: #e8d5c4;
     background-color: var(--color-bg);
     min-height: 100vh;
     display: flex;
@@ -80,17 +80,18 @@ p {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
-    color: #78350f;
+    background: linear-gradient(135deg, #2d1f16 0%, #4a3426 100%);
+    color: #f5e6d3;
     padding: var(--spacing-xl) var(--spacing-sm);
     text-align: center;
     animation: fadeIn 1s ease-in;
+    border-bottom: 2px solid #8b5a3c;
 }
 
 .tagline {
     font-size: clamp(1.125rem, 1.05rem + 0.37vw, 1.5rem);
-    opacity: 0.8;
-    color: #92400e;
+    opacity: 0.9;
+    color: #d4a574;
 }
 
 /* Portfolio Grid */
@@ -107,45 +108,46 @@ p {
 
 /* Portfolio Card */
 .portfolio-card {
-    background: white;
-    border: 1px solid var(--color-border);
+    background: #2a1f18;
+    border: 1px solid #4a3426;
     border-radius: var(--radius-lg);
     padding: var(--spacing-md);
-    box-shadow: var(--shadow-md);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .portfolio-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5), 0 0 0 2px #8b5a3c;
 }
 
 .card-content h2 {
-    color: var(--color-primary);
+    color: #d4a574;
 }
 
 .card-content p {
-    color: var(--color-text-light);
+    color: #b89968;
     margin-bottom: var(--spacing-md);
 }
 
 /* CTA Button */
 .cta-button {
     display: inline-block;
-    background-color: var(--color-primary);
-    color: white;
+    background-color: #8b5a3c;
+    color: #f5e6d3;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: var(--radius-md);
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    border: 1px solid #a67c52;
 }
 
 .cta-button:hover,
 .cta-button:focus {
-    background-color: var(--color-primary-dark);
+    background-color: #a67c52;
     transform: scale(1.05);
-    outline: 2px solid var(--color-primary);
+    outline: 2px solid #d4a574;
     outline-offset: 2px;
 }
 
