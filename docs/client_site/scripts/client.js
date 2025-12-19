@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Intersection Observer for fade-in animations
+    // Intersection Observer for scroll animations
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
@@ -121,12 +121,111 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
     
-    // Observe elements for animation
+    // Observe sections for animation
     document.querySelectorAll('section').forEach(section => {
         section.style.opacity = '0';
         section.style.transform = 'translateY(30px)';
         section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         fadeInObserver.observe(section);
+    });
+    
+    // Observe cards for staggered animation
+    document.querySelectorAll('.service-card, .portfolio-item, .testimonial-card').forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `opacity 0.5s ease ${index * 0.1}s, transform 0.5s ease ${index * 0.1}s`;
+        fadeInObserver.observe(card);
+    });
+    
+    // Parallax effect on hero
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const hero = document.querySelector('.hero-client');
+        if (hero) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+    });
+    
+    // Interactive service cards
+    document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-12px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+    
+    // Portfolio item hover effect with info overlay
+    document.querySelectorAll('.portfolio-item').forEach(item => {
+        item.addEventListener('click', function() {
+            this.classList.toggle('expanded');
+        });
+    });
+    
+    // Number counter animation for stats/trust badges
+    const animateCounter = (element, target) => {
+        const duration = 2000;
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                element.textContent = target + '+';
+                clearInterval(timer);
+            } else {
+                element.textContent = Math.floor(current) + '+';
+            }
+        }, 16);
+    };
+    
+    // Trigger counter animation when trust badges come into view
+    const trustBadges = document.querySelector('.trust-badges');
+    if (trustBadges) {
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const badges = entry.target.querySelectorAll('span');
+                    badges.forEach(badge => {
+                        const text = badge.textContent;
+                        const match = text.match(/\d+/);
+                        if (match) {
+                            const num = parseInt(match[0]);
+                            badge.textContent = text.replace(/\d+/, '0');
+                            setTimeout(() => {
+                                badge.textContent = text;
+                            }, 500);
+                        }
+                    });
+                    counterObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        counterObserver.observe(trustBadges);
+    }
+    
+    // Add ripple effect to buttons
+    document.querySelectorAll('.btn-primary-large, .btn-secondary, .nav-cta').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        });
     });
     
     // Add fade-in class styles
@@ -135,6 +234,27 @@ document.addEventListener('DOMContentLoaded', () => {
         .fade-in {
             opacity: 1 !important;
             transform: translateY(0) !important;
+        }
+        
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s ease-out;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        
+        .portfolio-item.expanded .portfolio-info {
+            max-height: 500px;
+            padding: 2rem;
         }
     `;
     document.head.appendChild(style);
